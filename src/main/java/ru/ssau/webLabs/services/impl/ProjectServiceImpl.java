@@ -1,15 +1,14 @@
 package ru.ssau.webLabs.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.ssau.webLabs.models.Project;
 import ru.ssau.webLabs.repositories.ProjectRepo;
 import ru.ssau.webLabs.services.ProjectService;
+
 import java.time.LocalDate;
 import java.util.List;
 
-@Primary
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -19,6 +18,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectServiceImpl(ProjectRepo projectDAO){
         this.projectDAO = projectDAO;
     }
+
     public Project create(String name, String description, LocalDate start, LocalDate end){
          return projectDAO.create(name, description, start, end);
     }

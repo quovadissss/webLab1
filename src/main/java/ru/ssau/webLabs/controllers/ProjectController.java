@@ -9,26 +9,25 @@ import ru.ssau.webLabs.models.Project;
 import ru.ssau.webLabs.services.ProjectService;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/projects")
-public class ProjectsController {
+public class ProjectController {
     private final ProjectService projectService;
     @Autowired
-    public ProjectsController(ProjectService repository){
-        this.projectService=repository;
+    public ProjectController(ProjectService p){
+        this.projectService=p;
     }
 
     @PostMapping
-    public ResponseEntity<?>createProject( @RequestBody @Valid Project project) {
+    public ResponseEntity<?>create( @RequestBody @Valid Project project) {
         Project pr = projectService.create(project.getName_pr(), project.getProject_description(),
                 project.getStart_data(), project.getEnd_data());
         return new ResponseEntity<>(pr, HttpStatus.CREATED);
     }
     @PutMapping( "/{pr_id}")
-    public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, @PathVariable("pr_id") int id){
+    public ResponseEntity<?> update(@Valid @RequestBody Project project, @PathVariable("pr_id") int id){
        if (projectService.update(id, project.getName_pr(), project.getProject_description(),
                project.getStart_data(), project.getEnd_data())!=0){
            return new ResponseEntity<>(HttpStatus.OK);

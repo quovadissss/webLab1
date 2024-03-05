@@ -3,7 +3,6 @@ package ru.ssau.webLabs.services;
 import ru.ssau.webLabs.models.Project;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ProjectService {
